@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class MovieAdapter(
@@ -20,6 +21,9 @@ class MovieAdapter(
             movie: Movie
         ) {
             title.text = movie.title
+            title.setOnClickListener {
+                Toast.makeText(title.context, movie.title, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
