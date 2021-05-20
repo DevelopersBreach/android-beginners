@@ -1,10 +1,10 @@
 package com.developersbreach.androidbeginners
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class MovieAdapter(
@@ -22,10 +22,7 @@ class MovieAdapter(
         ) {
             title.text = movie.title
             title.setOnClickListener {
-                val intent = Intent(title.context, DetailActivity::class.java).apply {
-                    putExtra("EXTRA_MESSAGE", movie)
-                }
-                title.context.startActivity(intent)
+                Toast.makeText(title.context, movie.title, Toast.LENGTH_SHORT).show()
             }
         }
     }
