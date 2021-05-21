@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.movie_recycler_view)
-        val movieList: List<Movie> = MovieRepo.data
+        val movieList: List<Movie> = MovieRepo.data(applicationContext)
         val adapter = MovieAdapter(movieList)
         recyclerView.adapter = adapter
     }

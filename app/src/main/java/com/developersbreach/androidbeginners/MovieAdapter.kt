@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -16,12 +17,14 @@ class MovieAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val title: TextView = itemView.findViewById(R.id.item_movie_title)
+        private val banner: ImageView = itemView.findViewById(R.id.item_movie_banner)
 
         fun bind(
             movie: Movie
         ) {
             title.text = movie.title
-            title.setOnClickListener {
+            banner.setImageResource(movie.banner)
+            banner.setOnClickListener {
                 val intent = Intent(title.context, DetailActivity::class.java).apply {
                     putExtra("EXTRA_MESSAGE", movie)
                 }
