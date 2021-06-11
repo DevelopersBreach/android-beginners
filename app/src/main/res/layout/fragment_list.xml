@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.list.ListFragment">
 
-    <include
-        android:id="@+id/search_place_holder"
-        layout="@layout/search_header_bar" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_recycler_view"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/movie_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:padding="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_place_holder"
-        tools:itemCount="12"
-        tools:listitem="@layout/item_movie" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

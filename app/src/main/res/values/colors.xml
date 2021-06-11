@@ -5,4 +5,10 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="candy">#E68080</color>
+    <color name="mauve">#754E7C</color>
+    <color name="cherry">#A60E0E</color>
+    <color name="teal">#1A6068</color>
+
 </resources>

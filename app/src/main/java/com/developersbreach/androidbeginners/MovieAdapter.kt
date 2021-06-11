@@ -1,5 +1,6 @@
 package com.developersbreach.androidbeginners
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 
 class MovieAdapter(
     private val sportsList: List<Movie>,
@@ -25,7 +27,9 @@ class MovieAdapter(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
+        private val card: MaterialCardView = itemView.findViewById(R.id.item_movie_card_view)
         private val title: TextView = itemView.findViewById(R.id.item_movie_title)
+        private val overview: TextView = itemView.findViewById(R.id.item_movie_overview)
         private val bannerImageView: ImageView = itemView.findViewById(R.id.item_movie_banner)
         private val itemParent: ConstraintLayout = itemView.findViewById(R.id.item_movie_constraint_layout)
 
@@ -33,9 +37,11 @@ class MovieAdapter(
             movie: Movie,
             clickListener: OnClickListener,
         ) {
+            card.setBackgroundResource(movie.background)
             title.text = movie.title
+            overview.text = movie.overview
 
-            Glide.with(title.context).load(movie.banner).circleCrop().into(bannerImageView)
+            Glide.with(title.context).load(movie.banner).into(bannerImageView)
 
             itemParent.setOnClickListener {
                 clickListener.onMovieItemClick(movie)

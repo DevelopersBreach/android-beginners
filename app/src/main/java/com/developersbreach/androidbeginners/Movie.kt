@@ -9,4 +9,5 @@ data class Movie(
     val title: String?,
     val banner: Int,
     val overview: String,
+    val background: Int
 ) : Parcelable
