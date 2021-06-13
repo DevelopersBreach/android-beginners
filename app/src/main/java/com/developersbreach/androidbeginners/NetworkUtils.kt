@@ -1,6 +1,5 @@
 package com.developersbreach.androidbeginners
 
-import android.util.Log
 import java.net.URL
 import java.util.*
 import javax.net.ssl.HttpsURLConnection
@@ -20,7 +19,6 @@ fun getResponseFromHttpsUrl(
 
     try {
         // Try to connect and read json data
-
         val inputStream = urlConnection.inputStream
         val scanner = Scanner(inputStream)
         scanner.useDelimiter("\\A")
@@ -32,7 +30,7 @@ fun getResponseFromHttpsUrl(
     } catch (exception: Exception) {
         // If something goes wrong, catch the exception and print it, to solve the error
         // It will not let our app crash
-        Log.e("NetworkUtils - HttpsUrl", exception.toString())
+        exception.printStackTrace()
 
     } finally {
         // Stop the url connection (if open)

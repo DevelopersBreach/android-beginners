@@ -3,8 +3,8 @@
     <style name="Theme.AndroidBeginners" parent="Theme.MaterialComponents">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#000000</item>
-        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorPrimary">#250000</item>
+        <item name="colorPrimaryVariant">#250000</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Status bar color. -->

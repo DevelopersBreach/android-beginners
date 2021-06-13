@@ -23,7 +23,6 @@ fun buildMovieUriType(
     return URL(baseUri.toString())
 }
 
-
 fun getJsonMovieData(
     createUrl: String
 ): List<Movie> {
@@ -32,7 +31,6 @@ fun getJsonMovieData(
     val movieList = ArrayList<Movie>()
 
     val baseJsonObject = JSONObject(createUrl)
-
     val resultsArray = baseJsonObject.getJSONArray("results")
 
     for (i in 0 until resultsArray.length()) {
