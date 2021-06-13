@@ -71,7 +71,7 @@
         hypnotic jellyfish, hungry seagulls, and more along the way.
     </string>
     <string name="search_movie_name">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular_movie_type">Popular</string>
+    <string name="top_rated_movie_type">Top Rated</string>
 
 </resources>

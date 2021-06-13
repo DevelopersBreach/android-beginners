@@ -33,12 +33,12 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val detailTitleTextView = view.findViewById<TextView>(R.id.movie_title_detail_text_view)
-        val detailOverviewTextView =
-            view.findViewById<TextView>(R.id.movie_overview_detail_text_view)
-        val detailMovieImageView = view.findViewById<ImageView>(R.id.movie_banner_detail_image_view)
+        // val detailOverviewTextView =
+        //     view.findViewById<TextView>(R.id.movie_overview_detail_text_view)
+        // val detailMovieImageView = view.findViewById<ImageView>(R.id.movie_banner_detail_image_view)
 
         detailTitleTextView.text = movieArgs.title
-        detailOverviewTextView.text = movieArgs.overview
-        detailMovieImageView.setImageResource(movieArgs.banner)
+        // detailOverviewTextView.text = movieArgs.overview
+        // detailMovieImageView.setImageResource(movieArgs.banner)
     }
 }
