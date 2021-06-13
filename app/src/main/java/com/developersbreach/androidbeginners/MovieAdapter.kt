@@ -1,34 +1,31 @@
 package com.developersbreach.androidbeginners
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class MovieAdapter(
-    private val sportsList: List<Movie>
+    private val movieList: List<Movie>,
+    private val clickListener: OnClickListener
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        private val title: TextView = itemView.findViewById(R.id.item_movie_title)
-        private val banner: ImageView = itemView.findViewById(R.id.item_movie_banner)
+        private val posterImageView: ImageView = itemView.findViewById(R.id.item_movie_poster)
 
         fun bind(
-            movie: Movie
+            movie: Movie,
+            clickListener: OnClickListener,
         ) {
-            title.text = movie.title
-            banner.setImageResource(movie.banner)
-            banner.setOnClickListener {
-                val intent = Intent(title.context, DetailActivity::class.java).apply {
-                    putExtra("EXTRA_MESSAGE", movie)
-                }
-                title.context.startActivity(intent)
+            Glide.with(posterImageView.context).load(movie.poster).into(posterImageView)
+
+            posterImageView.setOnClickListener {
+                clickListener.onMovieItemClick(movie)
             }
         }
     }
@@ -47,9 +44,15 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie: Movie = sportsList[position]
-        holder.bind(movie)
+        val movie: Movie = movieList[position]
+        holder.bind(movie, clickListener)
     }
 
-    override fun getItemCount() = sportsList.size
+    override fun getItemCount() = movieList.size
+
+    class OnClickListener(val clickListener: (movie: Movie) -> Unit) {
+        fun onMovieItemClick(movie: Movie) {
+            clickListener(movie)
+        }
+    }
 }
