@@ -1,4 +1,4 @@
-package com.developersbreach.androidbeginners
+package com.developersbreach.androidbeginners.repository.network
 
 import java.net.URL
 import java.util.*
@@ -10,7 +10,7 @@ fun createUrl(
     return getResponseFromHttpsUrl(requestUrl)
 }
 
-fun getResponseFromHttpsUrl(
+private fun getResponseFromHttpsUrl(
     requestUrl: URL?
 ): String {
 

@@ -1,4 +1,4 @@
-package com.developersbreach.androidbeginners
+package com.developersbreach.androidbeginners.temp
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.developersbreach.androidbeginners.R
+import com.developersbreach.androidbeginners.model.Movie
 
 class MovieAdapter(
     private val movieList: List<Movie>,
