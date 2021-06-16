@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.developersbreach.androidbeginners.view.list.ListFragment"
-        android:label="Movie List"
-        tools:layout="@layout/fragment_list" >
+        android:name="com.developersbreach.androidbeginners.view.list.StudentListFragment"
+        android:label="Students Database"
+        tools:layout="@layout/fragment_student_list" >
         <action
             android:id="@+id/listToDetailFragment"
             app:destination="@id/detailFragment" />
@@ -21,8 +21,8 @@
         android:name="com.developersbreach.androidbeginners.view.detail.DetailFragment"
         android:label="Detail" >
         <argument
-            android:name="movieArgs"
-            app:argType="com.developersbreach.androidbeginners.Movie" />
+            android:name="studentDetailArgs"
+            app:argType="com.developersbreach.androidbeginners.model.Student" />
     </fragment>
 
 </navigation>

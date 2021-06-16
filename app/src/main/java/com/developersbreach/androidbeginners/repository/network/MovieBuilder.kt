@@ -1,10 +1,11 @@
-package com.developersbreach.androidbeginners
+package com.developersbreach.androidbeginners.repository.network
 
+import com.developersbreach.androidbeginners.model.Movie
 import org.json.JSONObject
 import java.net.URI
 import java.net.URL
 
-const val POSTER_APPEND_URL = "https://image.tmdb.org/t/p/w500"
+private const val POSTER_APPEND_URL = "https://image.tmdb.org/t/p/w500"
 
 fun buildMovieType(
     movieType: String
@@ -14,7 +15,7 @@ fun buildMovieType(
     return getJsonMovieData(url)
 }
 
-fun buildMovieUriType(
+private fun buildMovieUriType(
     movieType: String
 ): URL {
     val builtMovieTypeUrl =
@@ -23,7 +24,7 @@ fun buildMovieUriType(
     return URL(baseUri.toString())
 }
 
-fun getJsonMovieData(
+private fun getJsonMovieData(
     createUrl: String
 ): List<Movie> {
 

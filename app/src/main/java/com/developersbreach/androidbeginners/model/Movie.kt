@@ -1,4 +1,4 @@
-package com.developersbreach.androidbeginners
+package com.developersbreach.androidbeginners.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

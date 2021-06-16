@@ -1,77 +1,10 @@
 <resources>
     <string name="app_name">AndroidBeginners</string>
 
-    <string name="overview_frozen">
-        Anna sets out on a journey with an iceman, Kristoff, and his reindeer, Sven, in order to
-        find her sister, Elsa, who has the power to convert any object or person into ice.
-    </string>
-
-    <string name="overview_moana">
-        Moana, daughter of chief Tui, embarks on a journey to return the heart of goddess Te Fitti
-        from Maui, a demigod, after the plants and the fish on her island start dying due to a blight.
-    </string>
-
-    <string name="overview_the_boss_baby">
-        Seven-year-old Tim gets jealous when his parents give all their attention to his little
-        brother. Tim soon learns that the baby can talk and the two team up to foil the plans of
-        the CEO of Puppy Co.
-    </string>
-
-    <string name="overview_tangled">
-        Rapunzel, a naive and young girl, is locked up by her overly protective mother. Her wish to
-        escape into the world outside finally comes true when she meets the good-hearted thief, Flynn.
-    </string>
-
-    <string name="overview_despicable_me">
-        Gru, a criminal mastermind, adopts three orphans as pawns to carry out the biggest heist in
-        history. His life takes an unexpected turn when the little girls see him as their potential
-        father.
-    </string>
-
-    <string name="overview_kung_fu_panda">
-        When Po the Panda, a kung fu enthusiast, gets selected as the Dragon Warrior, he decides to
-        team up with the Furious Five and destroy the evil forces that threaten the Valley of Peace.
-    </string>
-
-    <string name="overview_toy_story">
-        Toy Story is a 1995 American computer-animated comedy film produced by Pixar Animation
-        Studios and released by Walt Disney Pictures. The first installment in the Toy Story
-        franchise, it was the first entirely computer-animated feature film, as well as the first
-        feature film from Pixar.
-    </string>
-
-    <string name="overview_wall_e">
-        A machine responsible for cleaning a waste-covered Earth meets another robot and falls in
-        love with her. Together, they set out on a journey that will alter the fate of mankind.
-    </string>
-
-    <string name="overview_up">
-        Carl Fredricksen, a 78-year-old balloon salesman, is about to fulfill a lifelong dream.
-        Tying thousands of balloons to his house, he flies away to the South American wilderness.
-        But curmudgeonly Carl\'s worst nightmare comes true when he discovers a little boy named
-        Russell is a stowaway aboard the balloon-powered house.
-    </string>
-
-    <string name="overview_the_incredibles">
-        Forced to adopt a civilian identity and stuck in a white-collar job, Mr Incredible itches
-        to get back into action. When he is lured into a trap by the evil Syndrome, his family
-        contrives to save him.
-    </string>
-
-    <string name="overview_ice_age">
-        Manny the mammoth, Sid the loquacious sloth, and Diego the sabre-toothed tiger go on a
-        comical quest to return a human baby back to his father, across a world on the brink of
-        an ice age.
-    </string>
-
-    <string name="overview_finding_nemo">
-        Nemo, an adventurous young clownfish, is unexpectedly taken from his Great Barrier Reef
-        home to a dentist\'s office aquarium. It\'s up to his worrisome father Marlin and a friendly
-        but forgetful fish Dory to bring Nemo home — meeting vegetarian sharks, surfer dude turtles,
-        hypnotic jellyfish, hungry seagulls, and more along the way.
-    </string>
-    <string name="search_movie_name">Search</string>
-    <string name="popular_movie_type">Popular</string>
-    <string name="top_rated_movie_type">Top Rated</string>
+    <string name="hint_word">Student…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="add_word">Add word</string>
+    <string name="search_hint">Search</string>
 
 </resources>
