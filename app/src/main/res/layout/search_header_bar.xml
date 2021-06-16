@@ -24,7 +24,8 @@
             android:src="@drawable/ic_search_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/movie_edit_text"
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:backgroundTint="@android:color/transparent"
-            android:hint="@string/search_movie_name"
+            android:hint="@string/search_hint"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_icon"
@@ -49,7 +50,8 @@
             android:src="@drawable/ic_clear_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
