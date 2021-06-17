@@ -9,20 +9,29 @@
         android:id="@+id/listFragment"
         android:name="com.developersbreach.androidbeginners.view.list.StudentListFragment"
         android:label="Students Database"
-        tools:layout="@layout/fragment_student_list" >
+        tools:layout="@layout/fragment_student_list">
         <action
             android:id="@+id/listToDetailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/listToEditorFragment"
+            app:destination="@id/editorFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        tools:layout="@layout/fragment_detail"
         android:name="com.developersbreach.androidbeginners.view.detail.DetailFragment"
-        android:label="Detail" >
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="studentDetailArgs"
             app:argType="com.developersbreach.androidbeginners.model.Student" />
     </fragment>
+
+    <fragment
+        android:id="@+id/editorFragment"
+        android:name="com.developersbreach.androidbeginners.view.editor.EditorFragment"
+        android:label="Student Editor"
+        tools:layout="@layout/editor_fragment" />
 
 </navigation>

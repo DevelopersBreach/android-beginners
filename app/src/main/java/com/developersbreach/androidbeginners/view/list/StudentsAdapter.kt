@@ -12,7 +12,8 @@ import com.developersbreach.androidbeginners.model.Student
 import com.developersbreach.androidbeginners.view.list.StudentsAdapter.*
 
 class StudentsAdapter(
-    private val clickListener: OnClickListener
+    private val clickListener: OnClickListener,
+    private val longClickListener: OnLongClickListener
 ) : ListAdapter<Student, StudentViewHolder>(StudentsDiffUtils()) {
 
     class StudentViewHolder(
@@ -24,10 +25,16 @@ class StudentsAdapter(
         fun bind(
             student: Student,
             clickListener: OnClickListener,
+            longClickListener: OnLongClickListener
         ) {
             name.text = student.name
             name.setOnClickListener {
                 clickListener.onStudentItemClick(student)
+            }
+
+            name.setOnLongClickListener {
+                longClickListener.onStudentItemLongClick(student)
+                true
             }
         }
     }
@@ -35,15 +42,16 @@ class StudentsAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): StudentViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_student, parent, false
+        return StudentViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_student, parent, false
+            )
         )
-        return StudentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student: Student = getItem(position)
-        holder.bind(student, clickListener)
+        holder.bind(student, clickListener, longClickListener)
     }
 
     class StudentsDiffUtils : DiffUtil.ItemCallback<Student>() {
@@ -58,8 +66,16 @@ class StudentsAdapter(
     }
 
     class OnClickListener(val clickListener: (student: Student) -> Unit) {
+
         fun onStudentItemClick(student: Student) {
             clickListener(student)
+        }
+    }
+
+    class OnLongClickListener(val longClickListener: (student: Student) -> Unit) {
+
+        fun onStudentItemLongClick(student: Student) {
+            longClickListener(student)
         }
     }
 }
