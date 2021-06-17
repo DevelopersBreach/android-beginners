@@ -17,4 +17,32 @@ class StudentRepository(
     ) {
         dao.insert(student)
     }
+
+    @WorkerThread
+    suspend fun updateStudent(
+        student: Student
+    ) {
+        dao.update(student)
+    }
+
+    @WorkerThread
+    suspend fun deleteSelectedStudent(
+        student: Student
+    ) {
+        dao.deleteSingleStudent(student)
+    }
+
+    @WorkerThread
+    suspend fun deleteAllStudents() {
+        dao.deleteAllStudents()
+    }
+
+    @WorkerThread
+    suspend fun deleteSelectedStudentById(
+        studentId: Int
+    ) {
+        val list: List<Student> = dao.getStudents()
+        val student: Student = list[studentId]
+        dao.deleteSingleStudent(student)
+    }
 }

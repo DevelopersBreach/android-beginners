@@ -1,19 +1,20 @@
 package com.developersbreach.androidbeginners.view.list
 
 import android.app.Application
+import android.graphics.Canvas
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.developersbreach.androidbeginners.*
-import com.developersbreach.androidbeginners.model.Student
+import com.developersbreach.androidbeginners.R
+import com.developersbreach.androidbeginners.StudentsApplication
 import com.developersbreach.androidbeginners.repository.StudentRepository
+import kotlinx.android.synthetic.main.fragment_student_list.*
 
 
 class StudentListFragment : Fragment() {
@@ -40,27 +41,86 @@ class StudentListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val editStudent = view.findViewById<EditText>(R.id.edit_student)
-        val button = view.findViewById<Button>(R.id.button_save)
-        val recyclerView: RecyclerView = view.findViewById(R.id.students_recycler_view)
+        setHasOptionsMenu(true)
 
-        val adapter = StudentsAdapter(listener)
+        val recyclerView: RecyclerView = view.findViewById(R.id.students_recycler_view)
+        val adapter = StudentsAdapter(clickListener, longClickListener)
         recyclerView.adapter = adapter
 
         viewModel.studentsList.observe(viewLifecycleOwner, { students ->
             adapter.submitList(students)
         })
 
-        button.setOnClickListener {
-            val studentName = editStudent.text.toString()
-            viewModel.insertStudent(Student(studentName))
-            editStudent.setText("")
+        fab_new_student.setOnClickListener {
+            findNavController().navigate(
+                StudentListFragmentDirections.listToEditorFragment()
+            )
         }
+
+        val itemTouchHelper = ItemTouchHelper(helper)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private val listener = StudentsAdapter.OnClickListener { student ->
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_delete, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.delete_all_students_menu) {
+            viewModel.deleteAllStudents()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private val clickListener = StudentsAdapter.OnClickListener { student ->
         findNavController().navigate(
             StudentListFragmentDirections.listToDetailFragment(student)
         )
+    }
+
+    private val longClickListener = StudentsAdapter.OnLongClickListener { student ->
+        viewModel.deleteStudent(student)
+    }
+
+    private val helper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val studentId: Int = viewHolder.adapterPosition
+            viewModel.deleteStudentById(studentId)
+        }
+
+        override fun onChildDraw(
+            c: Canvas,
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            dX: Float,
+            dY: Float,
+            actionState: Int,
+            isCurrentlyActive: Boolean
+        ) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            val itemView = viewHolder.itemView
+            val candyColor = ContextCompat.getColor(requireContext(), R.color.candy)
+            val background = ColorDrawable(candyColor)
+
+            if (dX < 0) {
+                background.setBounds(
+                    itemView.right + dX.toInt(),
+                    itemView.top, itemView.right, itemView.bottom
+                )
+            }
+
+            background.draw(c)
+        }
     }
 }
