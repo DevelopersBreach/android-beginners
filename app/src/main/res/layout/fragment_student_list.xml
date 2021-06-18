@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:padding="4dp"
     tools:context=".view.list.StudentListFragment">
 
@@ -26,7 +27,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_new_student"
         android:tintMode="@color/white"
-        app:backgroundTint="#222222"
+        app:backgroundTint="#232323"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="ContentDescription" />

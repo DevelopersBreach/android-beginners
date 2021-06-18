@@ -3,13 +3,16 @@ package com.developersbreach.androidbeginners.view.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.androidbeginners.R
 import com.developersbreach.androidbeginners.model.Student
+import com.developersbreach.androidbeginners.utils.getSportImage
 import com.developersbreach.androidbeginners.view.list.StudentsAdapter.*
+import com.google.android.material.card.MaterialCardView
 
 class StudentsAdapter(
     private val clickListener: OnClickListener,
@@ -20,19 +23,27 @@ class StudentsAdapter(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
+        private val rollNumber: TextView = itemView.findViewById(R.id.item_student_roll_number_text_view)
         private val name: TextView = itemView.findViewById(R.id.item_student_name_text_view)
+        private val favoriteSport: TextView = itemView.findViewById(R.id.item_student_sport_text_view)
+        private val sport: ImageView = itemView.findViewById(R.id.item_student_sport_image_view)
+        private val parentCard: MaterialCardView = itemView.findViewById(R.id.item_student_card_parent)
 
         fun bind(
             student: Student,
             clickListener: OnClickListener,
             longClickListener: OnLongClickListener
         ) {
+            rollNumber.text = student.studentId.toString()
             name.text = student.name
-            name.setOnClickListener {
+            favoriteSport.text = student.favoriteSport
+            sport.setImageResource(getSportImage(student.favoriteSport))
+
+            parentCard.setOnClickListener {
                 clickListener.onStudentItemClick(student)
             }
 
-            name.setOnLongClickListener {
+            parentCard.setOnLongClickListener {
                 longClickListener.onStudentItemLongClick(student)
                 true
             }
