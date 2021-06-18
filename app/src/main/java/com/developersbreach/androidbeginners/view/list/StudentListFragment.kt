@@ -1,11 +1,8 @@
 package com.developersbreach.androidbeginners.view.list
 
 import android.app.Application
-import android.graphics.Canvas
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developersbreach.androidbeginners.R
 import com.developersbreach.androidbeginners.StudentsApplication
 import com.developersbreach.androidbeginners.repository.StudentRepository
-import kotlinx.android.synthetic.main.fragment_student_list.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class StudentListFragment : Fragment() {
@@ -43,6 +40,7 @@ class StudentListFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        val addNewStudentButton: FloatingActionButton = view.findViewById(R.id.fab_new_student)
         val recyclerView: RecyclerView = view.findViewById(R.id.students_recycler_view)
         val adapter = StudentsAdapter(clickListener, longClickListener)
         recyclerView.adapter = adapter
@@ -51,7 +49,7 @@ class StudentListFragment : Fragment() {
             adapter.submitList(students)
         })
 
-        fab_new_student.setOnClickListener {
+        addNewStudentButton.setOnClickListener {
             findNavController().navigate(
                 StudentListFragmentDirections.listToEditorFragment()
             )
@@ -81,7 +79,9 @@ class StudentListFragment : Fragment() {
     }
 
     private val longClickListener = StudentsAdapter.OnLongClickListener { student ->
-        viewModel.deleteStudent(student)
+        findNavController().navigate(
+            StudentListFragmentDirections.listToEditorFragment(student)
+        )
     }
 
     private val helper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -97,30 +97,6 @@ class StudentListFragment : Fragment() {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             val studentId: Int = viewHolder.adapterPosition
             viewModel.deleteStudentById(studentId)
-        }
-
-        override fun onChildDraw(
-            c: Canvas,
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            dX: Float,
-            dY: Float,
-            actionState: Int,
-            isCurrentlyActive: Boolean
-        ) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-            val itemView = viewHolder.itemView
-            val candyColor = ContextCompat.getColor(requireContext(), R.color.candy)
-            val background = ColorDrawable(candyColor)
-
-            if (dX < 0) {
-                background.setBounds(
-                    itemView.right + dX.toInt(),
-                    itemView.top, itemView.right, itemView.bottom
-                )
-            }
-
-            background.draw(c)
         }
     }
 }

@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.developersbreach.androidbeginners.R
 import com.developersbreach.androidbeginners.StudentsApplication
-import com.developersbreach.androidbeginners.model.Sport
 import com.developersbreach.androidbeginners.model.Student
 import com.developersbreach.androidbeginners.repository.StudentRepository
+import com.developersbreach.androidbeginners.utils.sportsList
 import com.google.android.material.textfield.TextInputLayout
 
 class EditorFragment : Fragment() {
@@ -25,9 +25,10 @@ class EditorFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val studentArgs = EditorFragmentArgs.fromBundle(requireArguments()).studentEditArgs
         val application: Application = requireActivity().application
         val repository: StudentRepository = (application as StudentsApplication).repository
-        val factory = EditorViewModelFactory(repository)
+        val factory = EditorViewModelFactory(repository, studentArgs)
         viewModel = ViewModelProvider(this, factory).get(EditorViewModel::class.java)
     }
 
@@ -41,19 +42,46 @@ class EditorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val inputStudentId =
+            view.findViewById<TextInputLayout>(R.id.student_roll_number_input_layout)
         val inputStudentName = view.findViewById<TextInputLayout>(R.id.student_name_input_layout)
         val inputStudentSport = view.findViewById<TextInputLayout>(R.id.student_sport_input_layout)
         val saveButton = view.findViewById<Button>(R.id.button_save)
 
-        saveButton.setOnClickListener {
-            val studentName = inputStudentName.editText?.text.toString()
-            viewModel.insertStudent(Student(studentName))
-            inputStudentName.editText?.setText("")
-            findNavController().navigateUp()
-        }
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_auto_complete_sport, sportsList)
+        val autoCompleteTextView = inputStudentSport.editText as? AutoCompleteTextView
+        autoCompleteTextView?.setAdapter(adapter)
 
-        val sportList = Sport.sportsList
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_auto_complete_sport, R.id.item_sport_title, sportList)
-        (inputStudentSport.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        if (viewModel.studentArgs?.name?.length == null) {
+
+            // Empty - New Student Entry
+            saveButton.text = resources.getString(R.string.add_new_student)
+
+            saveButton.setOnClickListener {
+                val rollNumber: Int = inputStudentId.editText?.text.toString().toInt()
+                val name = inputStudentName.editText?.text.toString()
+                val favouriteSport = inputStudentSport.editText?.text.toString()
+
+                viewModel.insertStudent(Student(rollNumber, name, favouriteSport))
+                findNavController().navigateUp()
+            }
+
+        } else {
+            // Not Empty - Updating Student Entry
+            saveButton.text = resources.getString(R.string.update_existing_student)
+
+            inputStudentId.editText?.setText(viewModel.studentArgs?.studentId.toString())
+            inputStudentName.editText?.setText(viewModel.studentArgs?.name)
+            inputStudentSport.editText?.setText(viewModel.studentArgs?.favoriteSport)
+
+            saveButton.setOnClickListener {
+                val rollNumber: Int = inputStudentId.editText?.text.toString().toInt()
+                val name = inputStudentName.editText?.text.toString()
+                val favouriteSport = inputStudentSport.editText?.text.toString()
+
+                viewModel.updateStudent(Student(rollNumber, name, favouriteSport))
+                findNavController().navigateUp()
+            }
+        }
     }
 }

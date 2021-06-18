@@ -11,7 +11,14 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_STUDENTS)
 data class Student(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = COLUMN_STUDENT_ID)
+    val studentId: Int?,
+
     @ColumnInfo(name = COLUMN_STUDENT_NAME)
-    val name: String
+    val name: String,
+
+    @ColumnInfo(name = COLUMN_STUDENT_FAVORITE_SPORT)
+    val favoriteSport: String
+
 ): Parcelable

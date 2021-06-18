@@ -9,5 +9,8 @@
     <string name="student_name_hint">student name</string>
     <string name="delete_menu_title">Delete</string>
     <string name="student_sport_hint">select sport</string>
+    <string name="student_roll_number_hint">roll number</string>
+    <string name="add_new_student">Add Student</string>
+    <string name="update_existing_student">Update Student</string>
 
 </resources>
