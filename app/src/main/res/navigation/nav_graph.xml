@@ -32,6 +32,12 @@
         android:id="@+id/editorFragment"
         android:name="com.developersbreach.androidbeginners.view.editor.EditorFragment"
         android:label="Student Editor"
-        tools:layout="@layout/editor_fragment" />
+        tools:layout="@layout/editor_fragment" >
+        <argument
+            android:name="studentEditArgs"
+            app:argType="com.developersbreach.androidbeginners.model.Student"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>

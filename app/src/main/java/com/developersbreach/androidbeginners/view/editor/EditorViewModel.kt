@@ -7,8 +7,9 @@ import com.developersbreach.androidbeginners.repository.StudentRepository
 import kotlinx.coroutines.launch
 
 class EditorViewModel(
-    private val repository: StudentRepository
-): ViewModel() {
+    private val repository: StudentRepository,
+    val studentArgs: Student?
+) : ViewModel() {
 
     fun insertStudent(
         student: Student
