@@ -15,11 +15,11 @@ interface StudentDao {
     @Query("SELECT * FROM $TABLE_STUDENTS")
     fun getStudents(): List<Student>
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update(student: Student)
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(student: Student)
+
+    @Update
+    suspend fun update(student: Student)
 
     @Query("DELETE FROM table_student")
     suspend fun deleteAllStudents()
