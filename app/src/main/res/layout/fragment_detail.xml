@@ -5,20 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:background="#000000"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/detail_student_sport_image_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_esports" />
 
     <TextView
         android:id="@+id/detail_student_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textAppearance="?attr/textAppearanceHeadline4"
-        android:textColor="@color/candy"
+        android:textAppearance="?attr/textAppearanceHeadline3"
+        android:textColor="#fafafa"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_student_sport_image_view"
         tools:text="Raj" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
